@@ -1,10 +1,11 @@
 <template>
+  <TheHeader title="RememberMe" />
   <StoredResources :resources="storedResources" />
 </template>
 
 <script setup>
 import StoredResources from "./components/LearningResources/StoredResources.vue";
-import LearningResource from "./components/LearningResources/LearningResource.vue";
+import TheHeader from "./components/Layouts/TheHeader.vue";
 
 const storedResources = [
     {
@@ -25,9 +26,10 @@ const storedResources = [
 
 <!-- <script>
 import StoredResources from "./components/LearningResources/StoredResources.vue";
+import TheHeader from "./components/Layouts/TheHeader.vue";
 
 export default {
-    components: { StoredResources },
+    components: { StoredResources, TheHeader },
     data() {
         return {
             storedResources: [
