@@ -1,15 +1,14 @@
 <template>
-    <li>
+    <li class="border rounded-lg p-4 flex flex-col gap-4 border-pink-200 ">
         <div>
-            <header>
-                <h3>{{ title }}</h3>
-                <button>Delete</button>
+            <header class="flex items-center justify-between">
+                <h3 class="text-2xl font-semibold">{{ title }}</h3>
+                <button class="px-3 py-1 rounded-lg bg-gray-200 border border-gray-300 text-sm">Delete</button>
             </header>
         </div>
-        <p>{{ description }}</p>
+        <p class="">{{ description }}</p>
         <nav>
-            <a href="{{ link }}">View Resource</a>
-            <a :href="link">View Resource</a>
+            <a :href="link" class="text-pink-600 hover:text-pink-500">View Resource</a>
         </nav>
     </li>
 </template>

@@ -1,16 +1,9 @@
 <template>
-    <ul >
-        <LearningResource
-            v-for="res in storedResources"
-            :key="res.id"
-            :title="res.title"
-            :description="res.description"
-            :link="res.link"
-        />
-    </ul>
+  <StoredResources :resources="storedResources" />
 </template>
 
 <script setup>
+import StoredResources from "./components/LearningResources/StoredResources.vue";
 import LearningResource from "./components/LearningResources/LearningResource.vue";
 
 const storedResources = [
@@ -31,10 +24,10 @@ const storedResources = [
 </script>
 
 <!-- <script>
-import LearningResource from "./components/LearningResources/LearningResource.vue";
+import StoredResources from "./components/LearningResources/StoredResources.vue";
 
 export default {
-    components: { LearningResource },
+    components: { StoredResources },
     data() {
         return {
             storedResources: [
