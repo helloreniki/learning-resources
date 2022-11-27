@@ -11,11 +11,15 @@
 </template>
 
 <script setup>
+import { inject } from "vue";
 import LearningResource from "./LearningResource.vue";
 
-defineProps({
-    resources: Object
-})
+// defineProps({
+//     resources: Object
+// })
+
+const resources = inject('resources');
+
 </script>
 
 <!-- <script>
@@ -23,7 +27,7 @@ import LearningResource from "../LearningResources/LearningResource.vue";
 
 export default {
     components: {LearningResource},
-    props: ['resources']
+    inject: ['resources']
 
 }
 </script> -->
