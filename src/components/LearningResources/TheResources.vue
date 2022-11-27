@@ -1,8 +1,9 @@
 <template>
-   {{currentTab}}
+   <!-- {{currentTab}}
+   {{ storedResButtonMode }} -->
    <BaseCard>
-        <BaseButton :mode="currentTab === 'StoredResources' ? 'active' : 'flat'" @click="setCurrentTab('StoredResources')">Stored Resources</BaseButton>
-        <BaseButton :mode="currentTab === 'AddResource' ? 'active' : 'flat'" @click="setCurrentTab('AddResource')">Add Resource</BaseButton>
+        <BaseButton :mode="storedResButtonMode" @click="setCurrentTab('StoredResources')">Stored Resources</BaseButton>
+        <BaseButton :mode="addResButtonMode" @click="setCurrentTab('AddResource')">Add Resource</BaseButton>
     </BaseCard>
 
     <!-- wont work with string :is="currentTab" only with object -->
@@ -11,7 +12,8 @@
 </template>
 
 <script setup>
-import { provide, ref, markRaw} from 'vue';
+import { computed } from '@vue/reactivity';
+import { provide, ref } from 'vue';
 import AddResource from "./AddResource.vue";
 import StoredResources from './StoredResources.vue';
 
@@ -21,6 +23,14 @@ const tabs = {
 }
 
 let currentTab = ref('StoredResources');
+
+const storedResButtonMode = computed(() => {
+   return currentTab.value === 'StoredResources' ? 'active' : 'flat'
+});
+
+const addResButtonMode = computed(() => {
+   return currentTab.value === 'AddResource' ? 'active' : 'flat'
+});
 
 const storedResources = [
     {
@@ -56,7 +66,7 @@ export default{
     components: {AddResource, StoredResources},
     data(){
         return {
-            selectedTab: 'storedResources',
+            currentTab: 'storedResources',
             storedResources: [
                  {
                     id: 'official-guide',
@@ -76,9 +86,17 @@ export default{
     provide(){
         return {resources: this.storedResources};
     },
+    computed: {
+        storedResButtonMode() {
+            return this.currentTab === 'StoredResources' ? 'active' : 'flat';
+        },
+        addResButtonMode() {
+            return this.currentTab === 'AddResource' ? 'active' : 'flat';
+        }
+    },
     methods: {
-        setSelectedTab(tab){
-            this.selectedTab = tab;
+        setCurrentTab(tab){
+            this.currentTab = tab;
         }
     },
 
