@@ -3,7 +3,7 @@
         <li class="flex flex-col gap-4">
             <header class="flex items-center justify-between">
                 <h3 class="text-2xl font-semibold">{{ title }}</h3>
-                <BaseButton type="submit">Delete</BaseButton>
+                <BaseButton mode="active" type="submit">Delete</BaseButton>
 
                 <!-- <button class="px-3 py-1 rounded-lg bg-gray-200 border border-gray-300 text-sm">Delete</button> -->
             </header>

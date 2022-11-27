@@ -1,8 +1,8 @@
 <template>
-   <!-- {{currentTab}} -->
+   {{currentTab}}
    <BaseCard>
-        <BaseButton @click="setCurrentTab('StoredResources')">Stored Resources</BaseButton>
-        <BaseButton @click="setCurrentTab('AddResource')">Add Resource</BaseButton>
+        <BaseButton :mode="currentTab === 'StoredResources' ? 'active' : 'flat'" @click="setCurrentTab('StoredResources')">Stored Resources</BaseButton>
+        <BaseButton :mode="currentTab === 'AddResource' ? 'active' : 'flat'" @click="setCurrentTab('AddResource')">Add Resource</BaseButton>
     </BaseCard>
 
     <!-- wont work with string :is="currentTab" only with object -->
