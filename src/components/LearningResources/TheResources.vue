@@ -7,7 +7,12 @@
     </BaseCard>
 
     <!-- wont work with string :is="currentTab" only with object -->
-    <component :is="tabs[currentTab]" />
+    <KeepAlive>
+        <component :is="tabs[currentTab]" @added="addResource"/>
+    </KeepAlive>
+
+    <!-- <StoredResources />
+    <AddResource @added="addResource" /> -->
 
 </template>
 
@@ -32,7 +37,7 @@ const addResButtonMode = computed(() => {
    return currentTab.value === 'AddResource' ? 'active' : 'flat'
 });
 
-const storedResources = [
+const storedResources = ref([
     {
         id: 'official-guide',
         title: 'Official Guide',
@@ -45,16 +50,33 @@ const storedResources = [
         description: 'Learn to google...',
         link: 'https://google.com'
     },
-];
+]);
 
 // console.log(selectedTab);
 function setCurrentTab(tab){
     currentTab.value = tab;
 }
 
+const addResource = function (title, description, url) {
+    console.log('addResource func')
+    console.log(title)
+    console.log(url)
+    const newResource = ref({
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: url
+    });
+    storedResources.value.unshift(newResource.value);
+    currentTab.value = 'StoredResources';
+    console.log(storedResources)
+}
+
 // no need to pass to component, just accept it in component (available to all child components)
 // provide(storedResources, 'resources');
 provide('resources', storedResources);
+provide('currentTab', currentTab);
+provide('addResource', addResource); // point at method, dont execute it with () addResource()
 
 </script>
 
