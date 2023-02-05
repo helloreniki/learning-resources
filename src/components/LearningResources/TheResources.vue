@@ -1,7 +1,7 @@
 <template>
    <!-- {{currentTab}}
    {{ storedResButtonMode }} -->
-   <BaseCard>
+   <BaseCard class="text-center">
         <BaseButton :mode="storedResButtonMode" @click="setCurrentTab('StoredResources')">Stored Resources</BaseButton>
         <BaseButton :mode="addResButtonMode" @click="setCurrentTab('AddResource')">Add Resource</BaseButton>
     </BaseCard>
@@ -57,10 +57,11 @@ function setCurrentTab(tab){
     currentTab.value = tab;
 }
 
+// runs when child component AddResource emits event 'added' with props
 const addResource = function (title, description, url) {
-    console.log('addResource func')
-    console.log(title)
-    console.log(url)
+    // console.log('addResource func')
+    // console.log(title)
+    // console.log(url)
     const newResource = ref({
         id: new Date().toISOString(),
         title: title,
@@ -69,14 +70,12 @@ const addResource = function (title, description, url) {
     });
     storedResources.value.unshift(newResource.value);
     currentTab.value = 'StoredResources';
-    console.log(storedResources)
+    // console.log(storedResources)
 }
 
 // no need to pass to component, just accept it in component (available to all child components)
-// provide(storedResources, 'resources');
 provide('resources', storedResources);
-provide('currentTab', currentTab);
-provide('addResource', addResource); // point at method, dont execute it with () addResource()
+
 
 </script>
 

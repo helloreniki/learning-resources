@@ -20,35 +20,9 @@
     </div>
 </template>
 
-<!-- <script setup>
-import { inject, ref } from 'vue';
-import BaseButton from '../UI/BaseButton.vue';
-
-const addResource = inject('addResource'); // now we can call in in submitData
-
-const titleInput = ref('') ; // html element with value prop
-const descInput = ref('');
-const linkInput = ref('');
-
-
-
-function submitData(){
-    const enteredTitle = titleInput.value.value ; // html element with value prop
-    const enteredDescription = descInput.value.value;
-    const enteredUrl = linkInput.value.value;
-
-    // console.log(titleInput)
-    // console.log(enteredTitle);
-    addResource('manula', 'fesdd', 'https://google.com');
-    // addResource(enteredTitle, enteredDescription, enteredUrl);
-}
-
-</script> -->
-
 <script setup>
 import { inject, ref } from 'vue';
 
-const addResource = inject('addResource'); // now we can call in in submitData
 const emit = defineEmits(['added'])
 
 let titleInput = ref('');
@@ -64,8 +38,6 @@ function submitData() {
     // console.log(titleInput);
     emit('added', titleInput, descInput, linkInput)
 
-    // addResource(titleInput, descInput, linkInput);
-    // emit('resource')
 }
 
 </script>
